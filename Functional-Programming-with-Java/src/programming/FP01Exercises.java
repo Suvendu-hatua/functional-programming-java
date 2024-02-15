@@ -2,6 +2,7 @@ package programming;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Stream;
 
 public class FP01Exercises {
 
@@ -33,6 +34,23 @@ public class FP01Exercises {
 		System.out.println("Printing the number of characters in each of the course name....");
 //		courseList.stream().forEach(course->System.out.println(course.length()));
 		courseList.stream().map(course->course.length()).forEach(System.out::println);
+		
+		//Exercise 7 ----> find square of each number in a list and sum them.
+		System.out.println("find square of each number in a list.....");
+		numbers.stream().map(num->num*num).forEach(System.out::println);
+		System.out.println("find square of each number in a list and sum them...");
+		int sum=numbers.stream().map(num->num*num).reduce(0,Integer::sum);
+		System.out.println(sum);
+		
+		//Exercise 8 ---->Cube every numbers in the list and find sum of them.
+		int sumOfCubes=numbers.stream().map(num->num*num*num).reduce(0, (x,y)->x+y);
+		System.out.println("Cube every numbers in the list and find sum of them...");
+		System.out.println(sumOfCubes);
+		
+		//Exercise 9 ----> Find sum of odd numbers in the list.
+		int sumOfOdds=numbers.stream().filter(num->num%2!=0).reduce(0,(x,y)->x+y);
+		System.out.println("Find sum of odd numbers in the list.");
+		System.out.println(sumOfOdds);
 	}
 
 }
