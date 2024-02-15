@@ -2,6 +2,7 @@ package programming;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class FP01Exercises {
@@ -51,6 +52,16 @@ public class FP01Exercises {
 		int sumOfOdds=numbers.stream().filter(num->num%2!=0).reduce(0,(x,y)->x+y);
 		System.out.println("Find sum of odd numbers in the list.");
 		System.out.println(sumOfOdds);
+		
+		//Exercise 10 --->Create a list of even numbers filtered from a list.
+		List<Integer> evenList=numbers.stream().filter(num->num%2==0).collect(Collectors.toList());
+		System.out.println("List of even numbers......");
+		System.out.println(evenList);
+		
+		//Exercise 11 --->Create a list contains length of all the course titles.
+		List<Integer> lengthList=courseList.stream().map(course->course.length()).collect(Collectors.toList());
+		System.out.println("List of length of all the course titles....");
+		System.out.println(lengthList);
 	}
 
 }
