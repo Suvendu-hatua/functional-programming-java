@@ -1,6 +1,8 @@
 package programming;
 
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 class Course{
 	private String name;
@@ -74,7 +76,41 @@ public class FP07_CustomClass {
 		
 		System.out.println(courseList.stream().noneMatch(course->course.getReviewScore()>100));
 
+		
+		//sorting courses based on no of students.
+		System.out.println("Aesc order------>");
+		Comparator<Course> basedOnStudents=Comparator.comparing(Course::getNoOfStudents);
+		//by default comparing means---> increasing order.
+		System.out.println(
+		courseList.stream().sorted(basedOnStudents).collect(Collectors.toList())
+		);
+		
+		//sorting based on students but in decreasing order.
+		System.out.println("Desc order------>");
+		Comparator<Course> basedOnStudentsDesc=Comparator.comparing(Course::getNoOfStudents).reversed();
+		System.out.println(courseList.stream().sorted(basedOnStudentsDesc).collect(Collectors.toList()));
+		
+		//sorting based on two fields.
+		System.out.println("Based on No of Students and ReviewScore---->");
+		Comparator<Course> basedOnStudentsAndReviewScoreAesc=Comparator.comparing(Course::getNoOfStudents).thenComparing(Course::getReviewScore);
+        System.out.println(courseList.stream().sorted(basedOnStudentsAndReviewScoreAesc).collect(Collectors.toList()));
+        
+        //More Utility methods--->
+        
+        //1) skip method--->
+        System.out.println(courseList.stream().sorted(basedOnStudentsAndReviewScoreAesc).skip(2).collect(Collectors.toList()));
+        
+        //2) limit method---->
+        System.out.println(courseList.stream().sorted(basedOnStudentsAndReviewScoreAesc).limit(5).collect(Collectors.toList()));
 
+        //3) skip and limit methods together.
+        System.out.println(courseList.stream().sorted(basedOnStudentsAndReviewScoreAesc).skip(2).limit(3).collect(Collectors.toList()));
+
+        //4)takeWhile Method ---->
+        //it will continue the execution of the code until the specified condition is true.
+        courseList.stream().takeWhile(course->course.getReviewScore()>=90).forEach(System.out::println);
+        
+        //5) dropWhile Method---->
 	}
 
 }
