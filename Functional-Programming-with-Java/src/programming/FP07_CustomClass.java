@@ -45,8 +45,8 @@ class Course{
 	
 	@Override
 	public String toString() {
-		return "Course [name=" + name + ", category=" + category + ", reviewScore=" + reviewScore
-				+ ", noOfStudents=" + noOfStudents + "]";
+		return "name=" + name + ", category=" + category + ", reviewScore=" + reviewScore
+				+ ", noOfStudents=" + noOfStudents ;
 	}
 	
 	
@@ -78,9 +78,11 @@ public class FP07_CustomClass {
 
 		
 		//sorting courses based on no of students.
+		
 		System.out.println("Aesc order------>");
 		Comparator<Course> basedOnStudents=Comparator.comparing(Course::getNoOfStudents);
 		//by default comparing means---> increasing order.
+		
 		System.out.println(
 		courseList.stream().sorted(basedOnStudents).collect(Collectors.toList())
 		);
@@ -111,6 +113,7 @@ public class FP07_CustomClass {
         courseList.stream().takeWhile(course->course.getReviewScore()>=90).forEach(System.out::println);
         
         //5) dropWhile Method---->
+        
 	}
 
 }
